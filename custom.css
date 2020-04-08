@@ -1,0 +1,36 @@
+.bagr {
+    background: url(images/1.png); 
+    padding: 0;
+    margin: 0 auto;
+    height: 308px;
+    width: 830px;
+}
+.miniWindow{
+   padding: 5px;
+   width: 126px;
+}
+.text {
+    padding: 5px 15px;
+    color: #ffffff;
+    background-color: rgba(34,34,34,.75);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: relative;
+}
+.x {
+    width: 20px;
+    height: 25px;
+    left: -4px;
+    position: relative;
+    text-align: center;
+    color: #ffffff;
+    border: 1px #000000;
+    background-color: rgba(34,34,34,.75);
+    display: inline-block;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
