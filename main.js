@@ -1,81 +1,67 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     console.log("DOM fully loaded and parsed");
 
-    var dragElem = document.getElementById('object');
-    var dragElem2 = document.getElementById('object2');
-    var dragElem3 = document.getElementById('object3');
+    var dragElem = document.getElementsByClassName('draggable');
+    for(var i = 0;dragElem.length > i; i++){
+      if(!!dragElem[i]){
+        dragElem[i].addEventListener('mousedown', mousdown(event,dragElem[i]));
+
+        dragElem[i].addEventListener('mouseup', mousup(dragElem[i], false));
+      }      
+    }
+    function mousdown(event, el) {
+      console.log('mousedown', el )
+      var coords = getCoords(dragElem[i]);
+      var shiftX = event.pageX - coords.left;
+      var shiftY = event.pageY - coords.top;
     
-    function ff() {
-        var a = dragElem;
-        return move(a)
-    }
-    function ff2() {
-        var a = dragElem2;
-        return move(a)
-    }
-    function ff3() {
-        var a = dragElem3;
-        return move(a)
-    }
+      el.classList.add('active')
+      dragElem[i].style.position = 'absolute';
+      document.body.appendChild(dragElem[i]);
+      moveAt(event, dragElem[i]);
+    
+      dragElem[i].style.zIndex = 1000; 
 
-    dragElem.onclick = ff();
-    dragElem2.onclick = ff2();
-    dragElem3.onclick = ff3();
-
-    var remD = document.getElementById('btn')
-    remD.addEventListener('click', remove())
+      dragElem[i].ondragstart = function() {
+        return true;
+      };
       
-    function remove(){
-      var item = document.getElementById('btn');
-        var parent = document.getElementById('btnDiv');
-      parent.removeChild(item);
+    
+      function moveAt(event, el) {
+        // console.log(dragElem[i])
+        dragElem[i].style.left = event.pageX - shiftX + 'px';
+        dragElem[i].style.top = event.pageY - shiftY + 'px';
+      }
+    
+      dragElem[i].addEventListener('mousemove', moveAt(event, el), false);
+    }
+    function mousup(el, event) {
+        el.removeEventListener('onmousdown', mousdown(el, event));
+        document.onmousemove = null;
+        event.onmouseup = null;    
+    }
+  
+    // var remD = document.getElementsByClassName('x')
+    // remD.forEach(element => {
+    //   console.log(element)
+    //   element.addEventListener('click', remove(element))
+    // });
+    
+    function remove(element){
+      var parent = element.parentNode.parentNode;
+      parent.removeChild(element.parentNode);
       console.log('gg2')
     }
 
-
-    function move(a) {
-    a.onmousedown = function(e) {
-
-      var x = document.getElementById('btn')
-      var coords = getCoords(a);
-      var shiftX = e.pageX - coords.left;
-      var shiftY = e.pageY - coords.top;
-    
-      x.classList.add('active')
-      a.style.position = 'absolute';
-      document.body.appendChild(a);
-      moveAt(e);
-    
-      a.style.zIndex = 1000; 
-    
-      function moveAt(e) {
-          a.style.left = e.pageX - shiftX + 'px';
-          a.style.top = e.pageY - shiftY + 'px';
-      }
-    
-      document.onmousemove = function(e) {
-        moveAt(e);
-      };
-    
-      a.onmouseup = function() {
-        document.onmousemove = null;
-        a.onmouseup = null;
-      };
       
-      }
       
-      a.ondragstart = function() {
-        return false;
-      };
-      
-      function getCoords(elem) {
-        var box = elem.getBoundingClientRect();
+      function getCoords(el) {
+        var box = el.getBoundingClientRect();
         return {
           top: box.top + pageYOffset,
           left: box.left + pageXOffset
         };
       }
-    }
+    });
 
 
-});

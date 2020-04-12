@@ -52,3 +52,6 @@
 .active {
     display: block;
 }
+.draggable{
+    cursor: pointer;
+}
