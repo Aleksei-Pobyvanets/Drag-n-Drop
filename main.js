@@ -1,6 +1,42 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     console.log("DOM fully loaded and parsed");
 
+
+    var contextmenu = document.getElementsByClassName('drag');
+    var initX, initY, mousePressX, mousePressY;
+    for(var i = 0;contextmenu.length > i; i++){
+      var el = contextmenu[i]
+      el.addEventListener('mousedown', function(event) {
+    
+        initX = this.offsetLeft;
+        initY = this.offsetTop;
+        mousePressX = event.clientX;
+        mousePressY = event.clientY;
+        
+        
+         this.addEventListener('mousemove', repositionElement, false);
+        
+
+         window.addEventListener('mouseup', function() {
+           el.removeEventListener('mousemove', repositionElement, false);
+         }, false);
+        
+        }, false);
+        
+        function repositionElement(event) {
+         this.style.left = initX + event.clientX - mousePressX + 'px';
+         this.style.top = initY + event.clientY - mousePressY + 'px';
+        }
+    }
+    for(var i = 0;contextmenu.length > i; i++){
+      var el = contextmenu[i]
+      el.addEventListener('click', function(e){ 
+        console.log('click')}, false);
+    }
+    
+    
+
+
     var dragElem = document.getElementsByClassName('draggable');
     for(var i = 0;dragElem.length > i; i++){
       if(!!dragElem[i]){
