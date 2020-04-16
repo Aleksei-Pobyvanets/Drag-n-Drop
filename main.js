@@ -33,22 +33,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
     for(var i = 0;contextmenu.length > i; i++){
       var el = contextmenu[i]
       el.addEventListener('click', gg, false);
+      console.log('click')
     }
     for(var i = 0;Xbtn.length > i; i++){
       var elem = Xbtn[i]
-      elem.addEventListener('click', ggEl, false);
-      console.log(ggEl)
+      elem.addEventListener('click', remove, false);
+      console.log('click')
     }
-
-    function ggEl() {
-      el.parentNode.removeChild(el)
-    }
-
     function gg(){
-      var item = document.createElement('p');
-      item.classList.add('x');
-      item.innerText = 'X';
-      el.appendChild(item)
+      var item = document.getElementsByClassName('x');
+      item.classList.add('active')
+    }
+
+    function remove() {
+      el.parentNode.removeChild(el)
     }
     
 });
