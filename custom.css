@@ -32,7 +32,7 @@
     border-bottom-left-radius: 5px;
     position: absolute;
 }
-.x {
+.xXx {
     font-size: 17px;
     position: absolute;
     color: #ffffff;
@@ -48,4 +48,10 @@
 }
 .draggable{
     cursor: pointer;
+}
+.zona {
+    background: url(images/1.png) no-repeat center;
+    width: 600px;
+    height: 300px;
+    margin: auto;
 }

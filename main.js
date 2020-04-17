@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     var contextmenu = document.getElementsByClassName('drag');
     var Xbtn = document.getElementsByClassName('x');
+    var area = document.getElementById('zona')
 
     var initX, initY, mousePressX, mousePressY;
     for(var i = 0;contextmenu.length > i; i++){
@@ -41,14 +42,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
       console.log('click')
     }
     function gg(){
-      var item = document.getElementsByClassName('x');
-      item.classList.add('active')
+      var item = document.getElementsByClassName('xXx');
+      item.style.display = "block"
     }
 
     function remove() {
       el.parentNode.removeChild(el)
     }
-    
-});
 
+});
 
