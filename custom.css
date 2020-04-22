@@ -32,7 +32,7 @@
     border-bottom-left-radius: 5px;
     position: absolute;
 }
-.removeButton {
+.remove__button {
     font-size: 17px;
     position: absolute;
     color: #ffffff;
@@ -54,4 +54,17 @@
     width: 600px;
     height: 300px;
     margin: auto;
+}
+.remove_buttot {
+    display: flex;
+    order: 1;
+    background: #FFF;
+    border: none;
+}
+.lorem-wrap{
+    display: flex;
+    position: absolute;
+    background-color: green;
+    z-index: 9999;
+    box-shadow: 6px 6px 5px #888888;
 }
