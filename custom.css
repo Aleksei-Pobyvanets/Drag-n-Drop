@@ -3,8 +3,51 @@
     height: 308px;
     width: 830px;
     position: absolute;
-}
-.miniWindow{
+ }
+ body {
+    margin: 0;
+    height: 100%;
+    background: skyblue;
+  }
+  
+  .dnd__zona {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    z-index: 999;
+  }
+  
+  .set__width_height {
+    z-index: -999;
+  }
+  
+  .lorem-wrap {
+    display: flex;
+    position: absolute;
+    background-color: green;
+    z-index: 9999;
+    box-shadow: 6px 6px 5px #888888;
+  }
+  
+  .lorem {
+    padding: 10px;
+    background-color: #aaff66;
+    position: relative;
+    top: 0;
+    text-align: center;
+    cursor: move
+  }
+  
+  .remove__button {
+    display: flex;
+    order: 1;
+    background: #FFF;
+    border: none;
+  }
+  
+
+
+/*.miniWindow{
     width: 96px;
     position: absolute;
     left: 25px;
@@ -68,3 +111,21 @@
     z-index: 9999;
     box-shadow: 6px 6px 5px #888888;
 }
+.lorem{
+    padding: 10px;
+    background-color: #aaff66;
+    position: relative;
+    top: 0;
+    text-align: center;
+    cursor: move;
+}
+.dnd_zona {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    z-index: 999;
+}
+#hiddenImg {
+    height: 308px;
+     width: 830px;
+} */
