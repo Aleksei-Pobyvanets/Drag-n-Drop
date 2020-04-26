@@ -1,8 +1,9 @@
-.bagr {
+.img {
     background: url(images/1.png);
     height: 308px;
     width: 830px;
     position: absolute;
+
  }
  body {
     margin: 0;
@@ -26,7 +27,6 @@
     position: absolute;
     background-color: green;
     z-index: 9999;
-    box-shadow: 6px 6px 5px #888888;
   }
   
   .lorem {
@@ -35,7 +35,8 @@
     position: relative;
     top: 0;
     text-align: center;
-    cursor: move
+    cursor: move;
+    user-select: none;
   }
   
   .remove__button {

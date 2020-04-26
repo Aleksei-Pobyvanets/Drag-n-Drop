@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function (event) {
+  console.log("DOM fully loaded and parsed");
+
 var dndZona = document.getElementById('dndZona');
 var body = document.body;
 
@@ -8,13 +11,10 @@ var hiddenImg = document.getElementById('hiddenImg');
 
 hiddenImg.setAttribute('src', img);
 
-window.onload = function () {
+
   document.addEventListener('mouseup', removeEvent, false);
   var heightDND = hiddenImg.offsetHeight;
   var widthDND = hiddenImg.offsetWidth;
-  dndZona.style.height = heightDND + 'px';
-  dndZona.style.width = widthDND + 'px';
-  hiddenImg.style.display = 'none';
 
   dndZona.addEventListener('mousedown', mainListener, false);
 
@@ -141,4 +141,5 @@ window.onload = function () {
     }
 
   }
-};
+
+});
