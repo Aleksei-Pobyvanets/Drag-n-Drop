@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log("dndZons")
     var contextmenu = document.getElementsByClassName('drag');
     var Xbtn = document.getElementsByClassName('x');
-  
+    
 
   var initX, initY, mousePressX, mousePressY;
   for(var i = 0;contextmenu.length > i; i++){
@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
       mousePressX = event.clientX;
       mousePressY = event.clientY;
       
-       this.addEventListener('mousemove', repositionElement, false);
+      this.addEventListener('mousemove', repositionElement, false);
 
-       window.addEventListener('mouseup', function() {
+      window.addEventListener('mouseup', function() {
          el.removeEventListener('mousemove', repositionElement, false);
        }, false);
       
