@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
   var target = this
 
   function dndZona(){
-
+      
+      document.mouseState = 'down';
       console.log("dndZons")
       var contextmenu = document.getElementsByClassName('drag');
       var Xbtn = document.getElementsByClassName('x');
@@ -16,6 +17,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
       var el = contextmenu[i]
       el.addEventListener('mousedown', function(event) {
         
+        contextmenu.lastMousePosY = e.pageY; 
+        contextmenu.lastMousePosX = e.pageX;
+        contextmenu.mouseState = 'down';
+        document.mouseState = 'down';
+
         if(Xbtn.length < 1){
         var item = document.createElement('button');
         item.classList.add('x');
@@ -38,35 +44,47 @@ document.addEventListener("DOMContentLoaded", function (event) {
         this.addEventListener('mousemove', repositionElement, false);
   
         window.addEventListener('mouseup', function() {
+          contextmenu.mouseState = 'up';
+          document.mouseState = 'up';
            el.removeEventListener('mousemove', repositionElement, false);
          }, false);
         
         }, false);
         
-      
+        document.mouseState = 'up';
+        contextmenu.mouseState = 'up';
+        contextmenu.lastMousePosY = null;
+        contextmenu.lastMousePosX = null;
+        contextmenu.proposedNewPosY = parseInt(contextmenu.style.top, 10);
+        contextmenu.proposedNewPosX = parseInt(contextmenu.style.left, 10);
+
+        var getAtInt = function getAtInt(obj, attrib) {
+          return parseInt(obj.style[attrib], 10);
+        };
+
         function repositionElement(event) {
-          // this.mousePressX = event.touches[0].clientX;
-          // this.mousePressY = event.touches[0].clientY;
-          this.prevLeft = parseInt(this.style.left) || 0;
-          this.prevTop = parseInt(this.style.top) || 0;
-
-          this.style.left = initX + event.clientX - mousePressX + 'px';
-          this.style.top = initY + event.clientY - mousePressY + 'px';
-
-        if (parseInt(this.style.top) < 0) {
-          this.style.top = '3px';
+        if ((document.mouseState === 'down') && (contextmenu.mouseState === 'down')) {
+          contextmenu.proposedNewPosY = getAtInt(contextmenu, 'top') + e.pageY - contextmenu.lastMousePosY;
+          contextmenu.proposedNewPosX = getAtInt(contextmenu, 'left') + e.pageX - contextmenu.lastMousePosX;
+      
+          if (contextmenu.proposedNewPosY < getAtInt(dnd, 'top')) {
+            contextmenu.style.top = dnd.style.top;
+          } else if (contextmenu.proposedNewPosY > getAtInt(dnd, 'top') + getAtInt(dnd, 'height') - getAtInt(contextmenu, 'height')) {
+            contextmenu.style.top = getAtInt(dnd, 'top') + getAtInt(dnd, 'height') - getAtInt(contextmenu, 'height') + 'px';
+          } else {
+            contextmenu.style.top = contextmenu.proposedNewPosY + 'px';
+          }
+      
+          if (contextmenu.proposedNewPosX < getAtInt(dnd, 'left')) {
+            contextmenu.style.left = dnd.style.left;
+          } else if (contextmenu.proposedNewPosX > getAtInt(dnd, 'left') + getAtInt(dnd, 'width') - getAtInt(contextmenu, 'width')) {
+            contextmenu.style.left = getAtInt(dnd, 'left') + getAtInt(dnd, 'width') - getAtInt(contextmenu, 'width') + 'px';
+          } else {
+            contextmenu.style.left = contextmenu.proposedNewPosX + 'px';
+          }
+          contextmenu.lastMousePosY = e.pageY;
+          contextmenu.lastMousePosX = e.pageX;
         }
-        if (parseInt(this.style.left) > initX - 0) {
-          this.style.left = initX - 0 + 'px'
-        }
-    
-        if (parseInt(this.style.top) > initY - 0) {
-          this.style.top = initY - 0 + 'px';
-        }
-        if (parseInt(this.style.left) < 0) {
-          this.style.left = '0px';
-        }
-    
         }
     }
   
