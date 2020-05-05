@@ -51,17 +51,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
       item.classList.add('x');
       item.innerText = 'X';
       element.appendChild(item)  
-    }else{
-      console.log('norm')
     }
   };
-
+  
   for(var i = 0;Xbtn.length > i; i++){
     var elem = Xbtn[i]
-    elem.addEventListener('click', RemoveElem, false);
+    elem.addEventListener('onmouseup', RemoveElem, false);
   }
-  function RemoveElem() {
-    container.parentNode.removeChild(element)
+  function RemoveElem(e) {
+    elem.parentNode.removeChild(element)
   }
   
   element.onmouseup = function(e) {
