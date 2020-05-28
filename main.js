@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   var element = document.getElementById('element'),
     container = document.getElementById('container');
-    Xbtn = document.getElementsByClassName('x');
+    
   
   
 
@@ -46,22 +46,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
     element.mouseState = 'down';
     document.mouseState = 'down';
 
-    if(Xbtn.length < 1){
+    if(document.getElementsByClassName('x').length < 1){
       var item = document.createElement('button');
       item.classList.add('x');
       item.innerText = 'X';
       element.appendChild(item)  
+      console.log(Xbtn, "btn")
     }
   };
+  document.getElementsByClassName('x').addEventListener('click', RemoveElem(), false);
   
-  for(var i = 0;Xbtn.length > i; i++){
-    var elem = Xbtn[i]
-    elem.addEventListener('onmouseup', RemoveElem, false);
+  function RemoveElem(){
+    document.getElementsByClassName('x').parentNode.removeChild(element)
   }
-  function RemoveElem(e) {
-    elem.parentNode.removeChild(element)
-  }
-  
+
   element.onmouseup = function(e) {
     element.mouseState = 'up';
     document.mouseState = 'up';

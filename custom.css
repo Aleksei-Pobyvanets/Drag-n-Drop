@@ -4,6 +4,7 @@
     right: -17.5px;
     top: 18px;
     position: relative;
+    z-index: 999;
 }
 #container {
     position : fixed;
