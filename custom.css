@@ -6,13 +6,26 @@
     position: relative;
     z-index: 999;
 }
+.x1{
+    text-align: center;
+    color: green;
+    right: -17.5px;
+    top: 18px;
+    position: relative;
+    z-index: 999;
+}
 #container {
     position : fixed;
     border-radius : 10px;
     background-image: url(images/1.png);
     border : solid 1px black;
 }
-#element {
+#element1 {
+    position : fixed;
+    background: black;
+    cursor: pointer;
+}
+#element2 {
     position : fixed;
     background: black;
     cursor: pointer;
