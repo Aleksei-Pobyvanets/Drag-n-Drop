@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     element.mouseState = 'up';
   };
   
+  
 
   element.onmousedown = function(e) {
     element.lastMousePosY = e.pageY;
@@ -51,14 +52,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
       item.classList.add('x');
       item.innerText = 'X';
       element.appendChild(item)  
-      console.log(Xbtn, "btn")
+      var Xbtn = document.getElementsByClassName('x')
+      
+    }
+    for(var i =0;i<Xbtn.length;i++){
+      var f = Xbtn[i]
+    }
+    
+      console.log(f, 'click')
+    f.onmousedown = function RemoveElem(){
+      element.remove(element)
     }
   };
-  document.getElementsByClassName('x').addEventListener('click', RemoveElem(), false);
   
-  function RemoveElem(){
-    document.getElementsByClassName('x').parentNode.removeChild(element)
-  }
+  
+  
+
 
   element.onmouseup = function(e) {
     element.mouseState = 'up';
