@@ -9,65 +9,54 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 var container = document.getElementById('container');
 var element = document.querySelectorAll('.elem');
-console.log(element, "test")
 
-
-for(var i = 0; i<element.length ;i++){
-  var elemme = element[i]
-console.log(elemme, "test222")
-
-
-
-elemme.addEventListener('onmousedown', dragEl(elemme), false);
-
-console.log(elemme.addEventListener('onmousedown', dragEl(elemme)), "test2232")
-
-  function dragEl(elemme){
-  document.mouseState = 'up';
+function dragEl(elemme){
+  this.mouseState = 'up';
   elemme.mouseState = 'up';
   elemme.lastMousePosY = null;
   elemme.lastMousePosX = null;
-  document.mouseState = 'up';
+  this.mouseState = 'up';
 
-  
 
-  document.onmousedown = function() {
-    document.mouseState = 'down';
-    console.log(this)
+  elemme.onmousedown = function() {
+    this.mouseState = 'down';
+    elemme.mouseState = 'down';
   };
-  document.onmouseup = function() {
-    document.mouseState = 'up';
+  elemme.onmouseup = function() {
+    this.mouseState = 'up';
     elemme.mouseState = 'up';
   };
   elemme.onmousedown = function(e) {
     elemme.lastMousePosY = e.pageY;
     elemme.lastMousePosX = e.pageX;
     elemme.mouseState = 'down';
-    document.mouseState = 'down';
-    if(document.getElementsByClassName('x').length < 1){
+    this.mouseState = 'down';
+
+    if(this.getElementsByClassName('x').length < 1){
     var item = document.createElement('button');
     item.classList.add('x');
     item.innerText = 'X';
     elemme.appendChild(item)  
+    
     }  
     var Xbtn = document.getElementsByClassName('x')
     for(var i =0;i<Xbtn.length;i++){
-      var f = Xbtn[i]
+      var remo = Xbtn[i]
     }
-    console.log(f, 'click')
-    f.onmousedown = function RemoveElem(){
+
+    remo.onmousedown = function RemoveElem(){
       elemme.remove(elemme)
     }
   };
   elemme.onmouseup = function(e) {
     elemme.mouseState = 'up';
-    document.mouseState = 'up';
+    this.mouseState = 'up';
   };
   var getAtInt = function getAtInt(obj, attrib) {
     return parseInt(obj.style[attrib], 10);
   };
-  document.onmousemove = function(e) {
-    if ((document.mouseState === 'down') && (elemme.mouseState === 'down')) {
+  elemme.onmousemove = function(e) {
+    if ((this.mouseState === 'down') && (elemme.mouseState === 'down')) {
       elemme.proposedNewPosY = getAtInt(elemme, 'top') + e.pageY - elemme.lastMousePosY;
       elemme.proposedNewPosX = getAtInt(elemme, 'left') + e.pageX - elemme.lastMousePosX;
   
@@ -92,9 +81,9 @@ console.log(elemme.addEventListener('onmousedown', dragEl(elemme)), "test2232")
   };
   elemme.removeEventListener('onmouseup', dragEl);
 }
+var two = document.getElementById('element2')
+two.addEventListener('onmousedown', dragEl(two), false);
 
-  
-  
-}
-  
+var one = document.getElementById('element1')
+one.addEventListener('onmousedown', dragEl(one), false);
 });
